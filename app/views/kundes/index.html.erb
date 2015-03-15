@@ -1,0 +1,52 @@
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <div class="page-header">          
+        <h1>Kunden Liste<br>
+
+          <small><%= pluralize(@kundes.count, "Kunde") %></small></h1>
+      </div>
+
+      <div class="col-md-3" id="leftCol">
+        <div class="well">    
+          <%= render 'layouts/sidebar_show' %>
+        </div>
+      </div>     
+
+      <div class="col-md-9" id="rightCol"> 
+
+
+        <div class="well">
+          Suche mit verschiedene Filteroptionen
+          <%= search_form_for @search do |f| %>
+          <%= f.condition_fields do |c| %>
+            <div class="field">
+              <%= c.attribute_fields do |a| %>
+                <%= a.attribute_select  %>
+              <% end %>
+              <%= c.predicate_select %>
+              <%= c.value_fields do |v| %>
+                <%= v.text_field :value %>
+              <% end %>
+              </div>
+            <% end %>
+            <div class="actions"><%= f.submit "Search", class: "btn-sm btn-success"  %> | 
+            <%= link_to 'alle Kunden Anzeigen', kundes_path, class: "btn-sm btn-info" %> </div>
+          <% end %>
+        </div>
+
+        <%= link_to 'Neuer Kunde anlegen', new_kunde_path, class: "btn btn-success " %> 
+
+        <%= render 'tablekunden' %> <br>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

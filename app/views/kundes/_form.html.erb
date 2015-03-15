@@ -1,0 +1,88 @@
+
+<%= form_for(@kunde) do |f| %>
+  <% if @kunde.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kunde.errors.count, "error") %> prohibited this kunde from being saved:</h2>
+
+      <ul>
+      <% @kunde.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="well">          
+  <div class="panel panel-info">
+    <div class="panel-body">
+
+      <div class="col-md-6" id="leftCol">
+        <div class="well">    
+          <div class="form-group">
+            <%= f.label :gruppe %><br>
+            <%= f.radio_button :gruppe, "Firma"  %> <%= f.label :gruppe, "Firma" %>
+            <%= f.radio_button :gruppe, "Privatperson"  %> <%= f.label :gruppe, "Privatperson" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :tsp_versicherungskunde %><br>
+            <%= f.radio_button :tsp_versicherungskunde, :true  %> <%= f.label :tsp_versicherungskunde, "Ja" %>
+            <%= f.radio_button :tsp_versicherungskunde, :false  %> <%= f.label :tsp_versicherungskunde, "Nein" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :anrede %><br>
+            <%= f.radio_button :anrede, "Frau"  %> <%= f.label :anrede, "Frau" %>
+            <%= f.radio_button :anrede, "Herr"  %> <%= f.label :anrede, "Herr" %>
+          </div>          
+          <div class="form-group">
+            <%= f.label :nachname %><br>
+            <%= f.text_field :nachname %>
+          </div>
+          <div class="form-group">
+            <%= f.label :geburtsname %><br>
+            <%= f.text_field :geburtsname %>
+          </div>
+          <div class="form-group">
+            <%= f.label :vorname %><br>
+            <%= f.text_field :vorname %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="rightCol">
+        <div class="well"> 
+          <div class="form-group">
+            <%= f.label :geburtsdatum %><br>
+            <%= f.date_select :geburtsdatum, {:start_year => Date.today.year - 70, :end_year => Date.today.year - 15,:prompt => { :day => 'Tag', :month => 'Monat', :year => 'Jahr' }} %>
+          </div>
+          <div class="form-group">
+            <%= f.label :geburtsort %><br>
+            <%= f.text_field :geburtsort %>
+          </div>
+          <div class="form-group">
+            <%= f.label :adresse %><br>
+            <%= f.text_field :adresse %>
+          </div>
+          <div class="form-group">
+            <%= f.label :plz %><br>
+            <%= f.text_field :plz %>
+          </div>
+          <div class="form-group">
+            <%= f.label :stadt %><br>
+            <%= f.text_field :stadt %>
+          </div>
+          <div class="form-group">
+            <%= f.label :telefonnummer %><br>
+            <%= f.text_field :telefonnummer %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Speichern', class: "btn btn-success" %> | | 
+    <%= link_to 'Löschen', kundes_path, class: "btn btn-danger" %>
+  </div>
+  <% end %>
+</div>
